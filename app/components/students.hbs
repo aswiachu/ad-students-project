@@ -1,0 +1,64 @@
+{{#if (not this.nothingList)}}
+<div class="text-end mt-3">
+    Select all
+    <input type="checkbox" {{on "change" this.selectAll}}>
+</div>
+{{/if}}
+<div class="overflow-y-scroll overflow-x-scroll" style="height: 550px;" >
+    <VerticalCollection @items={{this.students}} @tagName="table" @estimateHeight={{5}} staticHeight=true
+        bufferSize={{5}} firstReached="loadAbove" lastReached="loadBelow" as |item index|>
+        {{#double-clickable}}
+        <tbody class="my-3 w-100 rounded-3 {{if (eq this.selectedIndex index) 'border'}}" index={{index}}>
+            <tr class="w-100 justify-content-between align-items-center rounded-3 px-3 py-2">
+                <td class="col-3">
+                    <input type="checkbox" class="mx-2 mt-2 checkbox">
+                    {{#if (not-eq item.profileImage "")}}
+                    <img src={{item.profileImage}} alt="" width="50px" class="rounded-circle">
+                    {{/if}}
+                    <div class="d-inline-block align-middle mx-2">
+                        {{#if (not-eq item.name "")}}
+                        <span class="d-block fs-6 m-0 fw-semibold name">{{item.name}}</span>
+                        {{/if}}
+                        {{#if (not-eq item.rollNumber "")}}
+                        <span class="d-block rollNumber">{{item.rollNumber}}</span>
+                        {{/if}}
+                    </div>
+                </td>
+                <td class="col-3">
+                    {{#if (not-eq item.department "")}}
+                    <span class="d-block department">{{item.department}}</span>
+                    {{/if}}
+
+                    {{#if (not-eq item.enrollmentYear "")}}
+                    <span class="d-block enrollmentYear">{{item.enrollmentYear}}</span>
+                    {{/if}}
+                </td>
+                <td class="col-2">
+                    {{#if (not-eq item.dob "")}}
+                    <span class="d-block dob">{{item.dob}}</span>
+                    {{/if}}
+                    {{#if (not-eq item.gender "")}}
+                    <span class="d-block gender">{{item.gender}}</span>
+                    {{/if}}
+                </td>
+                {{#if (not-eq item.address "")}}
+                <td class="col-3 address">{{item.address}}</td>
+                {{/if}}
+                <td class="col-1 text-end">
+                    <button class="border-0 text-bg-secondary  text-white py-1 px-3 rounded" type="button" {{on 'click'
+                        (fn this.performEdit index)}}>Edit</button>
+                    <FaIcon @icon="xmark" class="mx-1" {{on 'click' (fn this.removeStudent index)}} />
+                </td>
+            </tr>
+        </tbody>
+        {{/double-clickable}}
+    </VerticalCollection>
+    {{#if this.nothingList}}
+    <div class="text-center text-secondary mt-5">
+        <p>Nothing to display</p>
+    </div>
+    {{/if}}
+</div>
+
+
+{{outlet}}

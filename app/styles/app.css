@@ -11,14 +11,16 @@ html {
 }
 
 table {
-  width: 100%;
-  margin: 20px 0 0;
+  width: 1200px;
+  user-select: none;
 }
 
 table tbody {
   display: block;
 }
-
+table tbody.outline {
+  outline: 2px solid black;
+}
 table tr {
   background-color: rgb(239 239 239);
   font-size: 14px;
@@ -91,10 +93,9 @@ input[type="checkbox"] {
 .calendar-parent {
   width: 70%;
   position: relative;
-
 }
 .calendar-parent input {
-  width: 100% !important
+  width: 100% !important;
 }
 .calendar-icon {
   position: absolute;

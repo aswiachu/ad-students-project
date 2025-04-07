@@ -8,14 +8,13 @@ export default class MainController extends Controller {
   @service studentsStore;
   @service flashMessages;
 
-
   @action
   removeFlashMessage(flash) {
     this.flashMessages.queue = this.flashMessages.queue.filter(
       (msg) => msg !== flash,
     );
   }
-  
+
   @action
   applySearchFilter() {
     const students = document.querySelectorAll('tbody');
@@ -38,8 +37,6 @@ export default class MainController extends Controller {
       const address =
         student.querySelector('.address')?.textContent.toLowerCase() || '';
 
-      console.log(inp);
-      console.log(address);
       if (
         name.includes(inp) ||
         rollNumber.includes(inp) ||
@@ -66,5 +63,4 @@ export default class MainController extends Controller {
   get bulkDeletion() {
     return this.studentsStore.bulkDeletion;
   }
- 
 }

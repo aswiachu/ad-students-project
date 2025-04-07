@@ -99,25 +99,36 @@ export default class ServiceStudents extends Service {
     },
   ];
 
+  @tracked selectedIndex = -1;
+
+  @tracked nothingList = false;
+
   @action
   removeStudent(i) {
+    console.log(i);
     this.students = this.students.filter((_, index) => index != i);
-    this.flashMessages.danger("Student removed from list!");
+    this.flashMessages.danger('Student removed from list!');
+    if(this.students.length == 0){
+      this.nothingList = true;
+    }else {
+      this.nothingList = false;
+    }
   }
 
   @action
   bulkDeletion() {
     const checkboxs = document.getElementsByClassName('checkbox');
-    if(checkboxs.length === 0){
-      this.flashMessages.danger("No students selected for deletion!");
-    }
-    console.log(checkboxs.length);
+    let isNotDeleted = true;
     for (let i = checkboxs.length - 1; i >= 0; i--) {
       if (checkboxs[i].checked) {
+        isNotDeleted = false;
         const index = checkboxs[i].closest('tbody').getAttribute('index');
         this.removeStudent(index);
         checkboxs[i].checked = false;
       }
+    }
+    if (isNotDeleted) {
+      this.flashMessages.danger('Please Select to delete!');
     }
   }
 
@@ -130,7 +141,7 @@ export default class ServiceStudents extends Service {
   @tracked dob = this.formatDate(new Date());
   @tracked gender = this.genders[0];
   @tracked address = '';
-  @tracked profileImage = ''
+  @tracked profileImage = '';
 
   @action
   resetForm() {
@@ -144,9 +155,12 @@ export default class ServiceStudents extends Service {
     this.profileImage = '';
   }
 
-  @action
-  addStudent(event) {
+
+  @task
+  *addStudent(event) {
     event.preventDefault();
+    yield timeout(2000);
+
     if (
       this.name &&
       this.rollNumber &&
@@ -177,11 +191,50 @@ export default class ServiceStudents extends Service {
         this.flashMessages.success('Student added!');
       }
       this.resetForm();
-      this.router.transitionTo('main.students');
+      this.router.transitionTo('index');
     } else {
-      this.flashMessages.error('Please fill all the fields!');
+      this.flashMessages.danger('Please fill all the fields!');
     }
   }
+
+  // @action
+  // addStudent(event) {
+  //   event.preventDefault();
+  //   if (
+  //     this.name &&
+  //     this.rollNumber &&
+  //     this.department &&
+  //     this.enrollmentYear &&
+  //     this.dob &&
+  //     this.gender &&
+  //     this.address &&
+  //     this.profileImage
+  //   ) {
+  //     const newStudent = {
+  //       name: this.name,
+  //       rollNumber: this.rollNumber,
+  //       department: this.department,
+  //       enrollmentYear: this.enrollmentYear,
+  //       dob: this.dob,
+  //       gender: this.gender,
+  //       address: this.address,
+  //       profileImage: this.profileImage,
+  //     };
+  //     if (this.editStudentIndex != -1) {
+  //       this.students = [...this.students];
+  //       this.students.splice(this.editStudentIndex, 1, newStudent);
+  //       this.flashMessages.success('Successfully data modifed!');
+  //       this.editStudentIndex = -1;
+  //     } else {
+  //       this.students = [...this.students, newStudent];
+  //       this.flashMessages.success('Student added!');
+  //     }
+  //     this.resetForm();
+  //     this.router.transitionTo('index');
+  //   } else {
+  //     this.flashMessages.danger('Please fill all the fields!');
+  //   }
+  // }
 
   @action
   updateData(event) {
@@ -220,8 +273,7 @@ export default class ServiceStudents extends Service {
   }
 
   @(task(function* ({ date }) {
-    yield timeout(100); // Pretend this is an ajax call to the server...
-    // ...and that here we update the events somehow
+    yield timeout(100);
     this.center = date;
   }).drop())
   updateMonth;
@@ -253,5 +305,4 @@ export default class ServiceStudents extends Service {
     this.address = this.students[index].address;
     this.profileImage = this.students[index].profileImage;
   }
-
 }
