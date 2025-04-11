@@ -1,0 +1,18 @@
+{{yield}}
+
+<div>
+    <h3>Continuous selection</h3>
+    <p>{{this.formatDate this.range.start}} - {{this.formatDate this.range.end}}</p>
+    <PowerCalendarRange
+      class="demo-range-calendar-with-pretty-range-ends-yo"
+      @center={{this.center}}
+      @onCenterChange={{this.onCenterChange}}
+      @proximitySelection={{true}}
+      @selected={{this.range}}
+      @onSelect={{this.onSelect}} as |calendar|>
+        <div class={{if calendar.loading 'loading-spiner-overlay' }}>
+            <calendar.Nav />
+            <calendar.Days />
+        </div>
+    </PowerCalendarRange>
+</div>

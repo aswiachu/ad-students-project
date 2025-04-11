@@ -1,0 +1,12 @@
+{{yield}}
+<h3>Select Date</h3>
+<div>
+    <p>{{this.selected}}</p>
+    <PowerCalendar @center={{this.center}} @onCenterChange={{perform this.updateMonth}} @onSelect={{this.onSelect}}
+        class="demo-calender" as |calendar|>
+        <div class={{if calendar.loading 'loading-spiner-overlay' }}>
+            <calendar.Nav />
+            <calendar.Days />
+        </div>
+    </PowerCalendar>
+</div>

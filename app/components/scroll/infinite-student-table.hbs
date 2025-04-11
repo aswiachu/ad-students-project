@@ -1,0 +1,70 @@
+{{!-- <div class="table-wrapper dark position-relative">
+    <VerticalCollection @items={{this.items}}
+     @estimateHeight={{40}}
+      @staticHeight={{true}}
+       @bufferSize={{10}}
+        @firstReached={{this.loadAbove}}
+        @lastReached={{this.loadBelow}} as |number index|>
+        {{#if (lt index this.numbers.length)}}
+        <div class="number-slide px-4 py-2 border-bottom">
+            <strong>#: Item -{{number}}</strong>
+        </div>
+        {{else}}
+        
+        {{/if}}
+
+        <div class="number-slide px-4 py-2 border-bottom">
+            <strong>#: Item {{number}}</strong>
+        </div>
+    </VerticalCollection>
+</div> --}}
+
+{{!-- <div class="scroll-container" style="height: 500px; overflow-y: auto;">
+  <VerticalCollection
+    @items={{this.items}}
+    @estimateHeight={{50}}
+    @staticHeight={{true}}
+    @bufferSize={{2}}
+    @firstReached={{this.loadAbove}}
+    @lastReached={{this.loadBelow}}
+    as |item|
+  >
+    <div class="item" style="height: 50px; padding: 10px;">
+      {{item}}
+    </div>
+  </VerticalCollection>
+</div> --}}
+
+<div class="overflow-y-scroll mx-3" style="height: 500px;">
+    <VerticalCollection 
+    @items={{this.students}}
+    @estimateHeight={{60}} 
+    @staticHeight={{true}}
+    @bufferSize={{2}}
+    @idForFirstItem={{this.idForFirstItem}} 
+    @firstReached={{this.loadAbove}}
+    @lastReached={{this.loadBelow}} as |item
+    index|>
+    <div class="d-flex justify-content-between align-items-center my-3 rounded-3 px-3 align-middle" style="height: 60px; background-color: rgb(239 239 239);">
+            <div class="col-3">
+              <img src={{item.profileImage}} alt="" class="rounded-circle" width="50px" height="50px"/>
+                <div class="d-inline-block align-middle mx-2">
+                    <span class="d-block fs-6 m-0 fw-semibold name">{{item.id}} {{item.name}}</span>
+                    <span class="d-block rollNumber">{{item.rollNumber}}</span>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="d-inline-block">
+                    <span class="d-block department">{{item.department}}</span>
+                    <span class="d-block enrollmentYear">{{item.enrollmentYear}}</span>
+                </div>
+            </div>
+            <div class="col-2">
+                <span class="d-block dob">{{item.dob}}</span>
+                <span class="d-block gender">{{item.gender}}</span>
+            </div>
+
+            <div class="col-3 address">{{item.address}}</div>
+    </div>
+</VerticalCollection>
+</div>

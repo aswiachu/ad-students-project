@@ -1,6 +1,6 @@
 {{yield}}
 <section class="bg-color">
-  <main class="bg-white w-75 m-auto py-3 px-4 vh-100">
+  <main class="bg-white w-75 m-auto py-3 px-4">
     <section class="d-flex justify-content-between align-items-center">
       <h3>Student List</h3>
       <input type="text" class="w-75 rounded-pill text-center py-1" id="searchInp" placeholder="Search..."
@@ -13,16 +13,81 @@
       <FaIcon @icon="trash" class="text-danger" {{on 'click' this.bulkDeletion}} {{on-key "Delete"
         this.bulkDeletion}} />
     </section>
-    
+
     <Students />
 
-    <div class="flash-messages-container">
+    <div class="flash-messages">
       {{#each this.flashMessages.queue as |flash|}}
-      <div class="flash-message {{flash.type}}">
-        <p class="m-0">{{flash.message}}</p>
-        <button class="flash-close-button" type="button" {{on "click" (fn this.removeFlashMessage flash)}}>×</button>
-      </div>
+      <FlashMessage @flash={{flash}} class="flash-message" as |component flash close|>
+        <h6 class="m-0">{{component.flashType}}: <span>{{flash.message}}</span></h6>
+        {{#if component.showProgressBar}}
+        <div class="alert-progress">
+          <div class="alert-progressBar" style="{{component.progressDuration}}"></div>
+        </div>
+        {{/if}}
+        <FaIcon @icon="xmark" role="button" class="text-danger close-btn" {{on "click" close}} />
+      </FlashMessage>
       {{/each}}
     </div>
+
+    <div>
+      <h3>Demo section</h3>
+      <div>
+        <h5>Scroll</h5>
+        <LinkTo @route="scroll.infinitescroll">
+          <button class="btn btn-primary" type="button">Infinite scroll</button>
+        </LinkTo>
+
+        <LinkTo @route="scroll.scrollablebody">
+          <button class="btn btn-primary" type="button">Scrollable Body</button>
+        </LinkTo>
+
+        <LinkTo @route="scroll.dynamic-content-size">
+          <button class="btn btn-primary" type="button">Dynamic Content Size</button>
+        </LinkTo>
+      </div>
+
+      <div>
+        <h5>Date Range</h5>
+        <LinkTo @route="date-demo.date">
+          <button class="btn btn-primary" type="button">Date</button>
+        </LinkTo>
+        <LinkTo @route="date-demo.date-range">
+          <button class="btn btn-primary" type="button">Date Range</button>
+        </LinkTo>
+        <LinkTo @route="date-demo.minimum-date-range">
+          <button class="btn btn-primary" type="button">Minimum Date Range</button>
+        </LinkTo>
+        <LinkTo @route="date-demo.maximum-date-range">
+          <button class="btn btn-primary" type="button">Maximum Date Range</button>
+        </LinkTo>
+        <LinkTo @route="date-demo.proximity-selection-date-range">
+          <button class="btn btn-primary my-1" type="button">Proximity Selection Date Range</button>
+        </LinkTo>
+        <LinkTo @route="date-demo.multiple-dates">
+          <button class="btn btn-primary my-1" type="button">Multiple Dates </button>
+        </LinkTo>
+      </div>
+
+        <div>
+        <h5>Select</h5>
+        <LinkTo @route="select-demo.select">
+          <button class="btn btn-primary" type="button">Select Item</button>
+        </LinkTo>
+
+        <LinkTo @route="select-demo.select-multiple">
+          <button class="btn btn-primary" type="button">Select Multiple</button>
+        </LinkTo>
+
+        <LinkTo @route="select-demo.select-group">
+          <button class="btn btn-primary" type="button">Select group</button>
+        </LinkTo>
+      </div>
+
+    </div>
+
   </main>
+
 </section>
+
+<LiquidOutlet @containerId="student-data-popup" />

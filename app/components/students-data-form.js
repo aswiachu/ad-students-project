@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { onKey } from 'ember-keyboard';
 
 export default class StudentsDataFormComponent extends Component {
   @service router;
@@ -31,6 +32,7 @@ export default class StudentsDataFormComponent extends Component {
   get profileImage() {
     return this.studentsStore.profileImage;
   }
+  @onKey('Enter')
   get addStudent() {
     return this.studentsStore.addStudent;
   }
@@ -73,137 +75,4 @@ export default class StudentsDataFormComponent extends Component {
   closeForm() {
     this.router.transitionTo('index');
   }
-
-  // get departments(){
-  //   return this.args.departments;
-  // }
-  // get genders(){
-  //   return this.args.genders;
-  // }
-  // get center(){
-  //   return this.args.center;
-  // }
-  // get isCalendarOpen(){
-  //   return this.args.isCalendarOpen;
-  // }
-  // @tracked studentFormData = {
-  //   name: '',
-  //   rollNumber: '',
-  //   department: this.departments[0],
-  //   enrollmentYear: '',
-  //   dob: new Date().toISOString().split('T')[0],
-  //   gender: this.genders[0],
-  //   address: '',
-  //   profileImage: '',
-  // };
-  // @action
-  // resetForm() {
-  //   this.studentFormData = {
-  //     name: '',
-  //     rollNumber: '',
-  //     department: this.departments[0],
-  //     enrollmentYear: '',
-  //     dob: '',
-  //     gender: this.genders[0],
-  //     address: '',
-  //     profileImage: '',
-  //   };
-  // }
-  // @action
-  // addStudent(event) {
-  //   event.preventDefault();
-  //   if (
-  //     this.studentFormData.name &&
-  //     this.studentFormData.rollNumber &&
-  //     this.studentFormData.department &&
-  //     this.studentFormData.enrollmentYear &&
-  //     this.studentFormData.dob &&
-  //     this.studentFormData.gender &&
-  //     this.studentFormData.address &&
-  //     this.studentFormData.profileImage
-  //   ) {
-  //     this.studentsStore.students = [
-  //       ...this.studentsStore.students,
-  //       this.studentFormData,
-  //     ];
-  //     this.flashMessages.success('Student added!');
-  //     this.resetForm();
-  //     this.router.transitionTo('main.students');
-  //   }
-  // }
-
-  // @action
-  // closeForm() {
-  //   this.router.transitionTo('main');
-  // }
-
-  // @action
-  // updateData(event) {
-  //   event.preventDefault();
-  //   this.studentFormData = {
-  //     ...this.studentFormData,
-  //     [event.target.name]: event.target.value,
-  //   };
-  // }
-  // departments = [
-  //   'Computer Science',
-  //   'Information Technology',
-  //   'Electronics',
-  //   'Mechanical',
-  //   'Civil',
-  //   'Electrical',
-  //   'Biomedical',
-  //   'Aerospace',
-  // ];
-
-  // @action
-  // chooseDepartment(selectedDepartment) {
-  //   this.studentFormData = {
-  //     ...this.studentFormData,
-  //     department: selectedDepartment,
-  //   };
-  // }
-  // @action
-  // chooseGender(selectedGender) {
-  //   this.studentFormData = {
-  //     ...this.studentFormData,
-  //     gender: selectedGender,
-  //   };
-  // }
-
-  // genders = ['Male', 'Female'];
-
-  // @tracked center = new Date();
-  // @tracked isCalendarOpen = false;
-
-  // @(task(function* ({ date }) {
-  //   yield timeout(100); // Pretend this is an ajax call to the server...
-  //   // ...and that here we update the events somehow
-  //   this.center = date;
-  // }).drop())
-  // updateMonth;
-
-  // formatDate(date) {
-  //   return (
-  //     date.getFullYear() +
-  //     '-' +
-  //     String(date.getMonth() + 1).padStart(2, '0') +
-  //     '-' +
-  //     String(date.getDate()).padStart(2, '0')
-  //   );
-  // }
-
-  // @action
-  // onSelect({ date }) {
-  //   this.studentFormData = {
-  //     ...this.studentFormData,
-  //     dob: this.formatDate(date),
-  //   }; // Format as "YYYY-MM-DD"
-  //   this.isCalendarOpen = false;
-  // }
-
-  // @action
-  // toggleCalendar() {
-  //   this.isCalendarOpen = !this.isCalendarOpen;
-  // }
 }

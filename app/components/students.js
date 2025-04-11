@@ -1,9 +1,8 @@
 import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
-import { keyResponder, onKey } from 'ember-keyboard';
+import { onKey } from 'ember-keyboard';
 
-@keyResponder
 export default class StudentsComponent extends Component {
   @service studentsStore;
   @service router;
@@ -11,12 +10,26 @@ export default class StudentsComponent extends Component {
   get students() {
     return this.studentsStore.students;
   }
-  get nothingList(){
+  get visibleStudents() {
+    return this.students.filter((s) => s.display);
+  }
+  get nothingList() {
     return this.studentsStore.nothingList;
+  }
+  get selectedIndex() {
+    return this.studentsStore.selectedIndex;
   }
   removeStudent = (index) => {
     this.studentsStore.removeStudent(index);
   };
+  @onKey('ArrowUp')
+  get moveUp() {
+    return this.studentsStore.moveUp;
+  }
+  @onKey('ArrowDown')
+  get moveDown() {
+    return this.studentsStore.moveDown;
+  }
 
   @action
   navigateToEdit(index) {
@@ -24,27 +37,33 @@ export default class StudentsComponent extends Component {
   }
 
   @action
-  performEdit(index) {
+  performEdit(item) {
+    const index = this.students.indexOf(item);
     this.studentsStore.editStudentIndex = index;
-    this.studentsStore.storeEditData(index);
+    this.studentsStore.storeEditData(item);
     this.router.transitionTo('index.edit', index + 1);
   }
 
-  @action 
-  selectAll(event){
-    const checkBoxs = document.querySelector('table').getElementsByClassName('checkbox');
+  @action
+  selectStudent(event) {
+    console.log('clicked');
+    const box = event.target.querySelector('.checkbox');
+    if (box) {
+      box.checked = !box.checked;
+    }
+  }
+  @action
+  selectAll(event) {
+    const checkBoxs = document
+      .querySelector('table')
+      .getElementsByClassName('checkbox');
     console.log(checkBoxs.length);
-    Array.from(checkBoxs).forEach(box => {
-      
-      if(event.target.checked){
+    Array.from(checkBoxs).forEach((box) => {
+      if (event.target.checked) {
         box.checked = true;
-      }else {
+      } else {
         box.checked = false;
       }
     });
-  }
-
-  doubleClickable() {
-    alert('DoubleClickableComponent was clicked!');
   }
 }

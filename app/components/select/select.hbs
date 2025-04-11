@@ -1,0 +1,9 @@
+{{yield}}
+
+<PowerSelect 
+@options={{this.departments}} 
+@onChange={{this.foo}} 
+@selected={{this.department}} 
+@labelText="Department: " class="w-25" as |dept|>
+    {{dept}}
+</PowerSelect>

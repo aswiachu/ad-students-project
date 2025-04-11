@@ -1,0 +1,13 @@
+{{yield}}
+<input type="text" placeholder="Focus me and press TAB to focus the select" style="line-height: 2;" class="w-25">
+<br>
+<PowerSelectMultiple 
+@options={{this.departments}} 
+@onChange={{fn (mut this.selectedDepartment)}} 
+@selected={{this.selectedDepartment}} 
+@searchEnabled={{true}}
+@onFocus={{this.handleFocus}}
+@onBlur={{this.handleBlur}} 
+@labelText="Department: " class="w-25" as |dept|>
+    {{dept}}
+</PowerSelectMultiple>

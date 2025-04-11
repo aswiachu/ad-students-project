@@ -1,0 +1,19 @@
+{{yield}}
+
+<div>
+    <h3>Multiple Selection</h3>
+    {{#each this.selected as |date|}}
+    <p class="d-inline-block">{{this.formatDate date}},</p>
+    {{/each}}
+    <PowerCalendarMultiple
+      class="demo-range-calendar-with-pretty-range-ends-yo"
+      @center={{this.center}}
+      @onCenterChange={{this.onCenterChange}}
+      @selected={{this.selected}}
+      @onSelect={{this.onSelect}} as |calendar|>
+        <div class={{if calendar.loading 'loading-spiner-overlay' }}>
+            <calendar.Nav />
+            <calendar.Days />
+        </div>
+    </PowerCalendarMultiple>
+</div>
