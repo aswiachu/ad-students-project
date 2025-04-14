@@ -1,0 +1,12 @@
+{{yield}}
+
+<PowerSelect 
+@options={{this.departments}} 
+@onChange={{fn (mut this.department)}} 
+@selected={{this.department}} 
+@allowClear={{true}}
+@selectedItemComponent={{component "select/selected-item-department" dept=this.department}}
+@placeholder="Select one department"
+@labelText="Department: " class="w-25" as |dept|>
+   <Select::SelectedItemDepartment @dept={{dept}} />
+</PowerSelect>

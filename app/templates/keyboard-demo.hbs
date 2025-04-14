@@ -1,0 +1,13 @@
+{{page-title "KeyboardDemo"}}
+<h1>Keyboard Demo</h1>
+
+<button class="btn btn-primary" type="button" {{on-key 'KeyA' this.OnKeyA}}>Press A to get alert msg</button>
+<button class="btn btn-primary" type="button" {{on-key 'KeyP' this.OnKeyP}}>Press P to print</button>
+<button class="btn btn-primary" type="button" {{on-key 'KeyN' this.OnKeyN}}>Press N to navigate</button>
+<button class="btn btn-primary" type="button" {{on-key 'KeyC' this.OnKeyC}}>{{if this.changed "Text Changed" "Press C to change text"}}</button>
+
+{{#if this.printMsg}}
+    <p>Hello user...!</p>
+{{/if}}
+
+{{outlet}}

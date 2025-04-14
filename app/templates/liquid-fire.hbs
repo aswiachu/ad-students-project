@@ -1,0 +1,50 @@
+{{page-title "LiquidFire"}}
+<LiquidBind />
+<h1 class="liquid-bind-heading">Liquid Fire</h1>
+
+<div>
+    <h3>Liquid outlet</h3>
+    <LinkTo @route="liquid-fire.left-right">
+        <button class="btn btn-primary" type="button">Left right</button>
+    </LinkTo>
+    <LinkTo @route="liquid-fire.up-down">
+        <button class="btn btn-primary" type="button">Up down</button>
+    </LinkTo>
+    <LinkTo @route="liquid-fire.fade">
+        <button class="btn btn-primary" type="button">cross Fade</button>
+    </LinkTo>
+    <LinkTo @route="liquid-fire.scale">
+        <button class="btn btn-primary" type="button">Scale</button>
+    </LinkTo>
+</div>
+
+<div class="my-2">
+    <h3>Liquid Bind</h3>
+    <div class="d-flex align-items-center justify-content-between">
+        <div>
+            <span class="d-inline-block">Left</span>
+            <LiquidBind @value={{this.leftNumber}} @use="toLeft" />
+        </div>
+        <div>
+            <span class="d-inline-block">Right</span>
+            <LiquidBind @value={{this.rightNumber}} @use="toRight" />
+        </div>
+        <div>
+            <span class="d-inline-block">Up</span>
+            <LiquidBind @value={{this.upNumber}} @use="toUp" />
+        </div>
+        <div>
+            <span class="d-inline-block">Down</span>
+            <LiquidBind @value={{this.downNumber}} @use="toDown" />
+        </div>
+        <div>
+            <span class="d-inline-block">Fade</span>
+            <LiquidBind @value={{this.fadeNumber}} @use="Fade" />
+        </div>
+        <div>
+            <span class="d-inline-block">scale</span>
+            <LiquidBind @value={{this.scaleNumber}} @use="Scale" />
+        </div>
+    </div>
+</div>
+<LiquidOutlet />

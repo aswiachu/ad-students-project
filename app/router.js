@@ -29,5 +29,20 @@ Router.map(function () {
     this.route('select');
     this.route('select-multiple');
     this.route('select-group');
+    this.route('select-component');
+  });
+  this.route('concurrency-demo', function () {
+    this.route('wo-task');
+    this.route('w-task');
+  });
+
+  this.route('keyboard-demo', function () {
+    this.route('keyboard');
+  });
+  this.route('liquid-fire', function () {
+    this.route('left-right');
+    this.route('up-down');
+    this.route('fade');
+    this.route('scale');
   });
 });

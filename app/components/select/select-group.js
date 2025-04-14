@@ -3,23 +3,21 @@ import { action } from '@glimmer/runtime';
 import { tracked } from '@glimmer/tracking';
 
 export default class SelectGroupComponent extends Component {
-  @tracked department ;
+  @tracked department;
 
   departments = [
     {
-      groupName: 'Engineering', options: [
+      groupName: 'Engineering',
+      options: [
         'Computer Science Engineering',
         'Mechanical Engineering',
         'Civil Engineering',
-        'Information Technology'
-      ]
+        'Information Technology',
+      ],
     },
     {
-      groupName: 'Arts and science', options: [
-        'Mathematics',
-        'Physics',
-        'Chemistry'
-      ]
-    }
-  ]
+      groupName: 'Arts and science',
+      options: ['Mathematics', 'Physics', 'Chemistry'],
+    },
+  ];
 }

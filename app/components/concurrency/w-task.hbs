@@ -1,0 +1,4 @@
+
+<p>{{if this.getNumber.isRunning 'Loading...' this.getNumber.last.value}}</p>
+
+<button class="btn btn-secondary px-3 py-1" type="button" {{on 'click' this.getNumber.perform}}>Click to get number</button>

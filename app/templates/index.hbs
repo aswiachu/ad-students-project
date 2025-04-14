@@ -2,7 +2,7 @@
 <section class="bg-color">
   <main class="bg-white w-75 m-auto py-3 px-4">
     <section class="d-flex justify-content-between align-items-center">
-      <h3>Student List</h3>
+      <h3 class="liquid-bind-heading">Student List</h3>
       <input type="text" class="w-75 rounded-pill text-center py-1" id="searchInp" placeholder="Search..."
         value={{this.searchInp}} {{on "input" this.updateSearch}}>
       <LinkTo @route="index.add">
@@ -69,7 +69,7 @@
         </LinkTo>
       </div>
 
-        <div>
+      <div>
         <h5>Select</h5>
         <LinkTo @route="select-demo.select">
           <button class="btn btn-primary" type="button">Select Item</button>
@@ -82,6 +82,36 @@
         <LinkTo @route="select-demo.select-group">
           <button class="btn btn-primary" type="button">Select group</button>
         </LinkTo>
+
+        <LinkTo @route="select-demo.select-component">
+          <button class="btn btn-primary" type="button">Select component</button>
+        </LinkTo>
+      </div>
+
+      <div>
+        <h5>Concurrency</h5>
+        <LinkTo @route="concurrency-demo.wo-task">
+          <button class="btn btn-primary" type="button">Without task</button>
+        </LinkTo>
+
+        <LinkTo @route="concurrency-demo.w-task">
+          <button class="btn btn-primary" type="button">with task, timeout</button>
+        </LinkTo>
+      </div>
+
+      <div>
+        <h5>Keyboard</h5>
+        <LinkTo @route="keyboard-demo">
+          <button class="btn btn-primary" type="button">Keyboard demo</button>
+        </LinkTo>
+      </div>
+
+      
+      <div>
+        <h5>Liquid fire</h5>
+        <LinkTo @route="liquid-fire">
+          <button class="btn btn-primary" type="button">Liquid fire demo</button>
+        </LinkTo>
       </div>
 
     </div>
@@ -90,4 +120,4 @@
 
 </section>
 
-<LiquidOutlet @containerId="student-data-popup" />
+<LiquidOutlet @containerId="student-data-popup"/>
