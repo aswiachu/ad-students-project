@@ -292,6 +292,7 @@ export default class ServiceStudents extends Service {
   @action
   toggleCalendar() {
     this.isCalendarOpen = !this.isCalendarOpen;
+    console.log(this.isCalendarOpen);
   }
 
   @(task(function* ({ date }) {

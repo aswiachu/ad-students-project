@@ -16,6 +16,7 @@ Router.map(function () {
     this.route('infinitescroll');
     this.route('scrollablebody');
     this.route('dynamic-content-size');
+    this.route('as-table');
   });
   this.route('date-demo', function () {
     this.route('date');

@@ -46,7 +46,6 @@ export default function () {
   this.transition(
     this.hasClass('liquid-bind-heading'),
     this.use('toDown', { duration }),
-    this.reverse('toUp', { duration })
+    this.reverse('toUp', { duration }),
   );
-
 }

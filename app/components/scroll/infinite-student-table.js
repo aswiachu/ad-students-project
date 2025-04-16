@@ -318,29 +318,3 @@ export default class InfiniteStudentTable extends Component {
     this.students = [...this.students, ...newStudents];
   }
 }
-
-// import Component from '@ember/component';
-// import { tracked } from '@glimmer/tracking';
-// import { action } from '@ember/object';
-
-// export default class NumberTableComponent extends Component {
-//   @tracked items = Array.from({ length: 20 }, (_, i) => `Item ${i + 1}`);
-
-//   @action
-//   loadAbove() {
-//     console.log("above")
-//     const firstItemNumber = parseInt(this.items[0].split(' ')[1]);
-//     const newItems = Array.from({ length: 5 }, (_, i) => `Item ${firstItemNumber - i - 1}`).reverse();
-//     this.items = [...newItems, ...this.items];
-//     console.log(this.items)
-//   }
-
-//   @action
-//   loadBelow() {
-//     console.log("below")
-//     const lastItemNumber = parseInt(this.items[this.items.length - 1].split(' ')[1]);
-//     const newItems = Array.from({ length: 5 }, (_, i) => `Item ${lastItemNumber + i + 1}`);
-//     this.items = [...this.items, ...newItems];
-//     console.log(this.items)
-//   }
-// }

@@ -1,0 +1,22 @@
+<div class="table-wrapper">
+    <table class="table table-striped latest-data">
+        <VerticalCollection @items={{this.students}}
+         @containerSelector=".table-wrapper" 
+         @tagName="tbody" 
+         @key="id"
+        @estimateHeight={{37}} @staticHeight={{true}} @bufferSize={{5}} as |student|>
+            <tr>
+                <td>
+                    <img src={{student.profileImage}} alt="Profile" width="25px" height="25px" class="rounded-circle">
+                </td>
+                <td>{{student.name}}</td>
+                <td>{{student.rollNumber}}</td>
+                <td>{{student.gender}}</td>
+                <td>{{student.department}}</td>
+                <td>{{student.dob}}</td>
+                <td>{{student.enrollmentYear}}</td>
+                <td>{{student.address}}</td>
+            </tr>
+        </VerticalCollection>
+    </table>
+</div>
