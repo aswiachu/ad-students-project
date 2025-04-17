@@ -15,7 +15,7 @@ module.exports = function (defaults) {
     },
 
     fingerprint: {
-      prepend: 'https://github.com/aswiachu/ad-students-project'
+      prepend: 'https://aswiachu.github.io/ad-students-project/'
     }
   });
 
