@@ -13,6 +13,10 @@ module.exports = function (defaults) {
     'ember-models-table': {
       includeDefaultCss: true,
     },
+
+    fingerprint: {
+      prepend: 'https://github.com/aswiachu/ad-students-project'
+    }
   });
 
   return app.toTree();
