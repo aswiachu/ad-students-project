@@ -1,0 +1,8 @@
+<VerticalCollection @items={{this.columns}} @tagName="ul" @estimateHeight={{10}} @bufferSize={{5}} {{on-click-outside
+    @toggleDropdown}}class="list-unstyled column-customization-dropdown" as |column index|>
+    <li class="my-2">
+        <label for={{column}} class="px-2">{{column}}</label>
+        <input type="checkbox" id={{column}} name={{column}} checked={{get @columnValues column}} {{on 'change'
+            @toggleColumn}}>
+    </li>
+</VerticalCollection>

@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import { onKey } from 'ember-keyboard';
+import { tracked } from '@glimmer/tracking';
 
 export default class StudentsComponent extends Component {
   @service studentsStore;
@@ -65,5 +66,30 @@ export default class StudentsComponent extends Component {
         box.checked = false;
       }
     });
+  }
+
+  @tracked columnValues = {
+    "profileImage": false,
+    "name": false,
+    "rollNumber": false,
+    "department": false,
+    "enrollmentYear": false,
+    "dob": false,
+    "gender": false,
+    "address": false
+  }
+  @action
+  toggleColumn(event) {
+    this.columnValues = {
+      ...this.columnValues,
+      [event.target.name]: !this.columnValues[event.target.name]
+    }
+  }
+
+  @tracked dropdownOpen = false;
+
+  @action
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
   }
 }
