@@ -16,56 +16,39 @@
 <div class="overflow-y-scroll overflow-x-scroll my-3" style="height: 70vh;" {{on-key 'ArrowDown' this.moveDown}}
     {{on-key 'ArrowUp' this.moveUp}}>
     {{#if this.visibleStudents.length}}
-    <VerticalCollection @items={{this.visibleStudents}} @tagName="table" @estimateHeight={{10}} @bufferSize={{5}} as
-        |item index|>
-        {{!-- <tr
-            class="w-100 rounded-3 fw-400 my-3 d-flex justify-content-between align-items-center rounded-3 px-3 py-2 {{if (eq this.selectedIndex index) 'border-bold'}}"
-            index={{index}} {{on 'dblclick' this.selectStudent}} item={{item}}>
-            <td class="col-3">
-                <input type="checkbox" class="mx-2 mt-2 checkbox">
-                <img src={{item.profileImage}} alt="" width="50px" class="rounded-circle">
-                <div class="d-inline-block align-middle mx-2">
-                    <span class="d-block fs-6 m-0 fw-semibold name">{{item.name}}</span>
-                    <span class="d-block rollNumber">{{item.rollNumber}}</span>
-                </div>
-            </td>
-            <td class="col-3">
-                <div class="d-inline-block">
-                    <span class="d-block department">{{item.department}}</span>
-                    <span class="d-block enrollmentYear">{{item.enrollmentYear}}</span>
-                </div>
-            </td>
-            <td class="col-2">
-                <span class="d-block dob">{{item.dob}}</span>
-                <span class="d-block gender">{{item.gender}}</span>
-            </td>
-
-            <td class="col-3 address">{{item.address}}</td>
-
-            <td class="col-1 text-end">
-                <button class="border-0 text-bg-secondary  text-white py-1 px-3 rounded" type="button" {{on 'click' (fn
-                    this.performEdit item)}}>Edit</button>
-                <FaIcon @icon="xmark" class="mx-1" {{on 'click' (fn this.removeStudent item)}} />
-
-            </td>
-        </tr> --}}
+    <VerticalCollection @items={{this.visibleStudents}} @tagName="table" @estimateHeight={{10}} @bufferSize={{5}}
+    class="table-parent" as |item index|>
         <tbody>
             <tr class="w-100 rounded-3 {{if (eq this.selectedIndex index) 'border-bold'}}" index={{index}}
                 {{on 'dblclick' this.selectStudent}} item={{item}}>
-                <td><input type="checkbox" class="mx-2 mt-2 checkbox"></td>
-                <td class="{{if this.columnValues.profileImage 'd-none' 'd-table-cell'}}"><img src={{item.profileImage}}
-                        alt="" width="50px" class="rounded-circle"></td>
-                <td class="fs-6 fw-semibold {{if this.columnValues.name 'd-none' 'd-table-cell'}}">{{item.name}}</td>
-                <td class="{{if this.columnValues.rollNumber 'd-none' 'd-table-cell'}}">{{item.rollNumber}}</td>
-                <td class="{{if this.columnValues.department 'd-none' 'd-table-cell'}}">{{item.department}}</td>
-                <td class="{{if this.columnValues.enrollmentYear 'd-none' 'd-table-cell'}}">{{item.enrollmentYear}}</td>
-                <td class="{{if this.columnValues.dob 'd-none' 'd-table-cell'}}">{{item.dob}}</td>
-                <td class="{{if this.columnValues.gender 'd-none' 'd-table-cell'}}">{{item.gender}}</td>
-                <td class="{{if this.columnValues.address 'd-none' 'd-table-cell'}}">{{item.address}}</td>
-                <td><button class="border-0 text-bg-secondary  text-white py-1 px-3 rounded" type="button" {{on 'click'
-                        (fn this.performEdit item)}}>Edit</button></td>
+                <td class="{{if this.columnValues.profileImage 'py-4' }}">
+                    {{#if (not-eq index 0)}}
+                    <input type="checkbox" class="mx-2 mt-2 checkbox">
+                    {{/if}}
+                </td>
+
+                <td class="{{if this.columnValues.profileImage 'd-none' 'd-table-cell'}}">
+                    <img src={{item.profileImage}} alt="" width="50px" class="rounded-circle">
+                </td>
+                <td class="fs-6 fw-semibold {{if this.columnValues.name 'd-none' 'd-table-cell'}} ">{{item.name}}</td>
+                <td class="{{if this.columnValues.rollNumber 'd-none' 'd-table-cell'}}  ">{{item.rollNumber}}</td>
+                <td class="{{if this.columnValues.department 'd-none' 'd-table-cell'}} ">{{item.department}}</td>
+                <td class="{{if this.columnValues.enrollmentYear 'd-none' 'd-table-cell'}} ">{{item.enrollmentYear}}
+                </td>
+                <td class="{{if this.columnValues.dob 'd-none' 'd-table-cell'}} ">{{item.dob}}</td>
+                <td class="{{if this.columnValues.gender 'd-none' 'd-table-cell'}} ">{{item.gender}}</td>
+                <td class="{{if this.columnValues.address 'd-none' 'd-table-cell'}} ">{{item.address}}</td>
                 <td>
+                    {{#if (not-eq index 0)}}
+                    <button class="border-0 text-bg-secondary  text-white py-1 px-3 rounded" type="button" {{on 'click'
+                        (fn this.performEdit item)}}>Edit</button>
+
+                    {{/if}}
+                </td>
+                <td>
+                    {{#if (not-eq index 0)}}
                     <FaIcon @icon="xmark" class="mx-1" {{on 'click' (fn this.removeStudent item)}} />
+                    {{/if}}
                 </td>
             </tr>
         </tbody>
@@ -76,3 +59,37 @@
     </div>
     {{/if}}
 </div>
+
+
+
+{{!-- <tr
+    class="w-100 rounded-3 fw-400 my-3 d-flex justify-content-between align-items-center rounded-3 px-3 py-2 {{if (eq this.selectedIndex index) 'border-bold'}}"
+    index={{index}} {{on 'dblclick' this.selectStudent}} item={{item}}>
+    <td class="col-3">
+        <input type="checkbox" class="mx-2 mt-2 checkbox">
+        <img src={{item.profileImage}} alt="" width="50px" class="rounded-circle">
+        <div class="d-inline-block align-middle mx-2">
+            <span class="d-block fs-6 m-0 fw-semibold name">{{item.name}}</span>
+            <span class="d-block rollNumber">{{item.rollNumber}}</span>
+        </div>
+    </td>
+    <td class="col-3">
+        <div class="d-inline-block">
+            <span class="d-block department">{{item.department}}</span>
+            <span class="d-block enrollmentYear">{{item.enrollmentYear}}</span>
+        </div>
+    </td>
+    <td class="col-2">
+        <span class="d-block dob">{{item.dob}}</span>
+        <span class="d-block gender">{{item.gender}}</span>
+    </td>
+
+    <td class="col-3 address">{{item.address}}</td>
+
+    <td class="col-1 text-end">
+        <button class="border-0 text-bg-secondary  text-white py-1 px-3 rounded" type="button" {{on 'click' (fn
+            this.performEdit item)}}>Edit</button>
+        <FaIcon @icon="xmark" class="mx-1" {{on 'click' (fn this.removeStudent item)}} />
+
+    </td>
+</tr> --}}

@@ -10,6 +10,17 @@ export default class ServiceStudents extends Service {
 
   @tracked students = [
     {
+      name: "Name",
+      rollNumber: "Roll Number",
+      department: "Department",
+      enrollmentYear: "Enrollment year",
+      dob: "Date of Birth",
+      gender: "Gender",
+      address: "Address",
+      profileImage: "Profile",
+      display: true,
+    },
+    {
       name: 'Sumit',
       rollNumber: '21543456',
       department: 'Computer Science',
