@@ -29,6 +29,6 @@ jobs:
         run: npm run build --environment=production
 
       - name: Deploy to GitHub Pages
-        run: npx ember github-pages:commit --message "Deploy to GitHub Pages"
+        run: npx ember github-pages:commit --branch=gh-pages --message "Initial deploy to GitHub Pages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
